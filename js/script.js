@@ -166,35 +166,56 @@ var myList = [
     }
 ];
 
-function buildHtmlTable(selector) {
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+if (id) {
+    const container = document.getElementById("content");
+    container.innerHTML = "<h1>" + id + "</h1>";
+} else {
+    buildHtmlTable();  // show table
+}
+
+function buildHtmlTable() {
+    var table = document.querySelector("#excelDataTable");
 
     for (var i = 0; i < myList.length; i++) {
-
         var group = myList[i];
         var rowspan = group.items.length;
 
         for (var j = 0; j < group.items.length; j++) {
-            var row$ = $('<tr/>');
+            var row = document.createElement("tr");
 
             if (j === 0) {
-                row$.append(
-                    $('<th/>')
-                        .attr('rowspan', rowspan)
-                        .html(group.title)
-                );
+                var th = document.createElement("th");
+                th.setAttribute("rowspan", rowspan);
+                th.innerHTML = group.title;
+                row.appendChild(th);
             }
 
             // sub title
-            row$.append($('<th/>').html(group.items[j].name));
+            var subTh = document.createElement("th");
+            subTh.innerHTML = group.items[j].name;
+            row.appendChild(subTh);
 
             // objects
             for (var k = 1; k <= 9; k++) {
-                var value = group.items[j]['obj' + k] || "";  // fallback to empty
-                row$.append($('<td/>').html(value));
+                var value = group.items[j]['obj' + k] || "";
+                var idNumber = value ? value.slice(-8, -5) : "";
+                console.log(idNumber)
+                var td = document.createElement("td");
+
+                if (value) {
+                    var link = document.createElement("a");
+                    link.setAttribute("href", "../index.html?id=" + idNumber);
+                    link.setAttribute("id", idNumber);
+                    link.textContent = value;
+
+                    td.appendChild(link);
+                }
+                row.appendChild(td);
             }
 
-            $(selector).append(row$);
+            table.appendChild(row);
         }
     }
-
 }
