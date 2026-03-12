@@ -79,16 +79,22 @@ function buildHtmlTable() {
             // objects
             for (var k = 1; k <= 9; k++) {
                 var value = group.items[j]['obj' + k] || "";
+                var fileNum = value ? value.slice(value.indexOf("(") + 1, value.indexOf(")")) : "";
+
                 var idNumber = value ? value.slice(-8, -5) : "";
-                // console.log(idNumber)
                 var td = document.createElement("td");
 
                 if (value) {
-                    var link = document.createElement("a");
-                    link.setAttribute("href", "../index.html?id=" + idNumber);
+                    //如果沒有案件可以下載就不要做連結
+                    if (fileNum == "0") {
+                        var link = document.createElement("p")
+                    }
+                    else {
+                        var link = document.createElement("a");
+                        link.setAttribute("href", "../index.html?id=" + idNumber);
+                    }
                     link.setAttribute("id", idNumber);
                     link.textContent = value;
-
                     td.appendChild(link);
                 }
                 row.appendChild(td);
