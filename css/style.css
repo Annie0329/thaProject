@@ -1,3 +1,17 @@
+*,
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'writesTaiWeb';
+}
+
+@font-face {
+    font-family: 'writesTaiWeb';
+    src:
+        url('../fonts/writesTaiWeb.ttf') format("ttf"),
+        url('../fonts/writesTaiWeb.woff2')format("woff2")
+}
+
 table {
     width: 100%;
     white-space: pre-wrap;
@@ -8,5 +22,18 @@ th,
 td {
     border: 1px solid black;
     text-align: left;
-    padding: 5px;
+    /* padding: 5px; */
+    font-weight: normal;
+}
+
+a {
+    display: block;
+}
+
+.caseInfo {
+    font-size: 24px;
+}
+
+.caseTitle {
+    font-size: 32px;
 }

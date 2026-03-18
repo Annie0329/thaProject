@@ -17,8 +17,7 @@ var myList = [
         items: [
             { name: "人事\n(5)\n21###.##", obj1: "失蹤\n(0)\n211##.##", obj2: "結婚\n(2)\n212##.##", obj3: "離婚\n(0)\n213##.##", obj4: "收養\n(2)\n214##.##", obj5: "監護\n(1)\n215##.##" },
             {
-                name: "田房\n(93)\n22###.##", obj1: "租借\n(6)\n221##.##", obj2: "抗租\n(11)\n222##.##", obj3: "霸收\n(3)\n223##.##", obj4: "霸佔\n(33)\n224##.##",
-                obj5: "爭界\n(18)\n225##.##", obj6: "爭財\n(11)\n226##.##", obj7: "公業\n(8)\n227##.##", obj8: "用水\n(3)\n228##.##", obj9: "抄押\n(0)\n229##.##"
+                name: "田房\n(93)\n22###.##", obj1: "租借\n(6)\n221##.##", obj2: "抗租\n(11)\n222##.##", obj3: "霸收\n(3)\n223##.##", obj4: "霸佔\n(33)\n224##.##", obj5: "爭界\n(18)\n225##.##", obj6: "爭財\n(11)\n226##.##", obj7: "公業\n(8)\n227##.##", obj8: "用水\n(3)\n228##.##", obj9: "抄押\n(0)\n229##.##"
             },
             { name: "錢債\n(0)\n23###.##", obj1: "買賣\n(0)\n231##.##", obj2: "典當\n(0)\n232##.##", obj3: "胎借\n(0)\n233##.##", obj4: "借貸\n(0)\n234##.##", obj5: "委寄\n(0)\n235##.##", obj6: "討物\n(0)\n236##.##", obj7: "抗吞\n(0)\n237##.##", obj8: "抗算\n(0)\n238##.##", obj9: "匿契\n(0)\n239##.##" },
             { name: "商事\n(0)\n24###.##", obj1: "郊行\n(0)\n241##.##", obj2: "合股\n(0)\n242##.##", obj3: "倒閉\n(0)\n243##.##", obj4: "侵權\n(0)\n244##.##" }
@@ -45,7 +44,7 @@ if (id) {
     for (item of fileName) {
         if (item.lastIndexOf(id, 0) == 0) {
             // console.log(item);
-            container.innerHTML += "<p><a href=\"../pdf/" + item + ".pdf\" download= \"" + item + ".pdf\"" + ">" + item + "</a></p>";
+            container.innerHTML += "<p class = \"downloadLink\"><a href=\"../pdf/" + item + ".pdf\" download= \"" + item + ".pdf\"" + ">" + item + "</a></p>";
         }
     }
 
@@ -66,14 +65,41 @@ function buildHtmlTable() {
 
             if (j === 0) {
                 var th = document.createElement("th");
+                var value = group.title
                 th.setAttribute("rowspan", rowspan);
-                th.innerHTML = group.title;
+                th.setAttribute("class", "mainTable");
+
+                var caseTitle = document.createElement("p");
+                caseTitle.setAttribute("class", "caseTitle");
+                caseTitle.textContent = value.slice(0, value.indexOf("\n"))
+                console.log(caseTitle.textContent, value.indexOf("\n"))
+                th.appendChild(caseTitle);
+
+                var caseInfo = document.createElement("p");
+                caseInfo.setAttribute("class", "caseInfo");
+                caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
+                console.log(caseInfo.textContent, value.indexOf("\n"))
+                th.appendChild(caseInfo);
+
                 row.appendChild(th);
             }
 
             // sub title
             var subTh = document.createElement("th");
-            subTh.innerHTML = group.items[j].name;
+            var value = group.items[j].name;
+
+            var caseTitle = document.createElement("p");
+            caseTitle.setAttribute("class", "caseTitle");
+            caseTitle.textContent = value.slice(0, value.indexOf("\n"))
+            console.log(caseTitle.textContent, value.indexOf("\n"))
+            subTh.appendChild(caseTitle);
+
+            var caseInfo = document.createElement("p");
+            caseInfo.setAttribute("class", "caseInfo");
+            caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
+            console.log(caseInfo.textContent, value.indexOf("\n"))
+            subTh.appendChild(caseInfo);
+
             row.appendChild(subTh);
 
             // objects
@@ -93,13 +119,24 @@ function buildHtmlTable() {
                         var link = document.createElement("a");
                         link.setAttribute("href", "../index.html?id=" + idNumber);
                     }
+
+                    var caseTitle = document.createElement("p");
+                    caseTitle.setAttribute("class", "caseTitle");
+                    caseTitle.textContent = value.slice(0, value.indexOf("\n"))
+                    console.log(caseTitle.textContent, value.indexOf("\n"))
+                    link.appendChild(caseTitle);
+
+                    var caseInfo = document.createElement("p");
+                    caseInfo.setAttribute("class", "caseInfo");
+                    caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
+                    console.log(caseInfo.textContent, value.indexOf("\n"))
+                    link.appendChild(caseInfo);
+
                     link.setAttribute("id", idNumber);
-                    link.textContent = value;
                     td.appendChild(link);
                 }
                 row.appendChild(td);
             }
-
             table.appendChild(row);
         }
     }
