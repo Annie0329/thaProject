@@ -3,34 +3,32 @@ var myList = [
     {
         title: "行政\n(181)\n1####.##",
         items: [
-            { name: "總務\n(62)\n11###.##", obj1: "祀儀\n(2)\n111##.##", obj2: "吏務\n(14)\n112##.##", obj3: "吏紀\n(20)\n113##.##", obj4: "薪津\n(6)\n114##.##", obj5: "外事\n(10)\n115##.##", obj6: "移交\n(5)\n116##.##", obj7: "雜事\n(5)\n117##.##" },
-            { name: "民政\n(77)\n12###.##", obj1: "學務\n(2)\n121##.##", obj2: "鄉保\n(39)\n122##.##", obj3: "聯庄\n(3)\n123##.##", obj4: "保甲\n(6)\n124##.##", obj5: "厚俗\n(21)\n125##.##", obj6: "義倉\n(5)\n126##.##", obj7: "救恤\n(1)\n127##.##" },
-            { name: "財政\n(1)\n13###.##", obj1: "田賦\n(0)\n131##.##", obj2: "清賦\n(1)\n132##.##", obj3: "稅契\n(0)\n133##.##", obj4: "給照\n(0)\n134##.##", obj5: "釐金\n(0)\n135##.##", obj6: "錢幣\n(0)\n136##.##", obj7: "征收\n(0)\n137##.##", obj8: "解庫\n(0)\n138##.##", obj9: "雜事\n(0)\n139##.##" },
-            { name: "建設\n(2)\n14###.##", obj1: "民業\n(0)\n141##.##", obj2: "鹽務\n(0)\n142##.##", obj3: "樟腦\n(0)\n143##.##", obj4: "礦產\n(1)\n144##.##", obj5: "工程\n(1)\n145##.##" },
-            { name: "交通\n(0)\n15###.##", obj1: "驛站\n(0)\n151##.##", obj2: "船政\n(0)\n152##.##", obj3: "鐵路\n(0)\n153##.##", obj4: "義渡\n(0)\n154##.##" },
-            { name: "軍事\n(0)\n16###.##", obj1: "軍政\n(0)\n161##.##", obj2: "兵餉\n(0)\n162##.##", obj3: "城工\n(0)\n163##.##", obj4: "息庄\n(0)\n164##.##", obj5: "私火\n(0)\n165##.##" },
-            { name: "撫墾\n(39)\n17###.##", obj1: "社務\n(12)\n171##.##", obj2: "社租\n(11)\n172##.##", obj3: "隘務\n(13)\n173##.##", obj4: "屯務\n(3)\n174##.##" }
+            { name: "總務\n(62)\n11###.##", objs: ["祀儀\n(2)\n111##.##", "吏務\n(14)\n112##.##", "吏紀\n(20)\n113##.##", "薪津\n(6)\n114##.##", "外事\n(10)\n115##.##", "移交\n(5)\n116##.##", "雜事\n(5)\n117##.##"] },
+            { name: "民政\n(77)\n12###.##", objs: ["學務\n(2)\n121##.##", "鄉保\n(39)\n122##.##", "聯庄\n(3)\n123##.##", "保甲\n(6)\n124##.##", "厚俗\n(21)\n125##.##", "義倉\n(5)\n126##.##", "救恤\n(1)\n127##.##"] },
+            { name: "財政\n(1)\n13###.##", objs: ["田賦\n(0)\n131##.##", "清賦\n(1)\n132##.##", "稅契\n(0)\n133##.##", "給照\n(0)\n134##.##", "釐金\n(0)\n135##.##", "錢幣\n(0)\n136##.##", "征收\n(0)\n137##.##", "解庫\n(0)\n138##.##", "雜事\n(0)\n139##.##"] },
+            { name: "建設\n(2)\n14###.##", objs: ["民業\n(0)\n141##.##", "鹽務\n(0)\n142##.##", "樟腦\n(0)\n143##.##", "礦產\n(1)\n144##.##", "工程\n(1)\n145##.##"] },
+            { name: "交通\n(0)\n15###.##", objs: ["驛站\n(0)\n151##.##", "船政\n(0)\n152##.##", "鐵路\n(0)\n153##.##", "義渡\n(0)\n154##.##"] },
+            { name: "軍事\n(0)\n16###.##", objs: ["軍政\n(0)\n161##.##", "兵餉\n(0)\n162##.##", "城工\n(0)\n163##.##", "息庄\n(0)\n164##.##", "私火\n(0)\n165##.##"] },
+            { name: "撫墾\n(39)\n17###.##", objs: ["社務\n(12)\n171##.##", "社租\n(11)\n172##.##", "隘務\n(13)\n173##.##", "屯務\n(3)\n174##.##"] }
         ]
     },
     {
         title: "民事\n(98)\n2####.##",
         items: [
-            { name: "人事\n(5)\n21###.##", obj1: "失蹤\n(0)\n211##.##", obj2: "結婚\n(2)\n212##.##", obj3: "離婚\n(0)\n213##.##", obj4: "收養\n(2)\n214##.##", obj5: "監護\n(1)\n215##.##" },
-            {
-                name: "田房\n(93)\n22###.##", obj1: "租借\n(6)\n221##.##", obj2: "抗租\n(11)\n222##.##", obj3: "霸收\n(3)\n223##.##", obj4: "霸佔\n(33)\n224##.##", obj5: "爭界\n(18)\n225##.##", obj6: "爭財\n(11)\n226##.##", obj7: "公業\n(8)\n227##.##", obj8: "用水\n(3)\n228##.##", obj9: "抄押\n(0)\n229##.##"
-            },
-            { name: "錢債\n(0)\n23###.##", obj1: "買賣\n(0)\n231##.##", obj2: "典當\n(0)\n232##.##", obj3: "胎借\n(0)\n233##.##", obj4: "借貸\n(0)\n234##.##", obj5: "委寄\n(0)\n235##.##", obj6: "討物\n(0)\n236##.##", obj7: "抗吞\n(0)\n237##.##", obj8: "抗算\n(0)\n238##.##", obj9: "匿契\n(0)\n239##.##" },
-            { name: "商事\n(0)\n24###.##", obj1: "郊行\n(0)\n241##.##", obj2: "合股\n(0)\n242##.##", obj3: "倒閉\n(0)\n243##.##", obj4: "侵權\n(0)\n244##.##" }
+            { name: "人事\n(5)\n21###.##", objs: ["失蹤\n(0)\n211##.##", "結婚\n(2)\n212##.##", "離婚\n(0)\n213##.##", "收養\n(2)\n214##.##", "監護\n(1)\n215##.##"] },
+            { name: "田房\n(93)\n22###.##", objs: ["租借\n(6)\n221##.##", "抗租\n(11)\n222##.##", "霸收\n(3)\n223##.##", "霸佔\n(33)\n224##.##", "爭界\n(18)\n225##.##", "爭財\n(11)\n226##.##", "公業\n(8)\n227##.##", "用水\n(3)\n228##.##", "抄押\n(0)\n229##.##"] },
+            { name: "錢債\n(0)\n23###.##", objs: ["買賣\n(0)\n231##.##", "典當\n(0)\n232##.##", "胎借\n(0)\n233##.##", "借貸\n(0)\n234##.##", "委寄\n(0)\n235##.##", "討物\n(0)\n236##.##", "抗吞\n(0)\n237##.##", "抗算\n(0)\n238##.##", "匿契\n(0)\n239##.##"] },
+            { name: "商事\n(0)\n24###.##", objs: ["郊行\n(0)\n241##.##", "合股\n(0)\n242##.##", "倒閉\n(0)\n243##.##", "侵權\n(0)\n244##.##"] }
         ]
     },
     {
         title: "刑事\n(103)\n3####.##",
         items: [
-            { name: "總務\n(36)\n31###.##", obj1: "法令\n(1)\n311##.##", obj2: "冊報\n(1)\n312##.##", obj3: "指揮\n(0)\n313##.##", obj4: "互助移解\n(12)\n314##.##", obj5: "通緝\n(5)\n315##.##", obj6: "驗屍\n(5)\n316##.##", obj7: "定讞\n(3)\n317##.##", obj8: "執行\n(7)\n318##.##", obj9: "其他\n(2)\n319##.##" },
-            { name: "人身自由\n(42)\n32###.##", obj1: "人命\n(5)\n321##.##", obj2: "毆傷\n(16)\n322##.##", obj3: "勒贖\n(1)\n323##.##", obj4: "誘拐\n(8)\n324##.##", obj5: "略賣\n(7)\n325##.##", obj6: "擄禁\n(0)\n326##.##", obj7: "擄搶\n(5)\n327##.##" },
-            { name: "財產侵奪\n(0)\n33###.##", obj1: "竊盜\n(0)\n331##.##", obj2: "搶奪\n(0)\n332##.##", obj3: "強盜\n(0)\n333##.##", obj4: "強盜殺傷\n(0)\n334##.##", obj5: "海盜\n(0)\n335##.##", obj6: "恐嚇\n(0)\n336##.##", obj7: "詐欺\n(0)\n337##.##", obj8: "盜賣\n(0)\n338##.##", obj9: "毀棄\n(0)\n339##.##" },
-            { name: "公共秩序\n(11)\n34###.##", obj1: "匪徒\n(3)\n341##.##", obj2: "侵害水源\n(2)\n342##.##", obj3: "騷擾\n(6)\n343##.##", obj4: "謠言\n(0)\n344##.##" },
-            { name: "風化\n(14)\n35###.##", obj1: "忤逆\n(2)\n351##.##", obj2: "毀墳\n(10)\n352##.##", obj3: "通姦\n(2)\n353##.##", obj4: "拐姦\n(0)\n354##.##", obj5: "賭博\n(0)\n355##.##" }
+            { name: "總務\n(36)\n31###.##", objs: ["法令\n(1)\n311##.##", "冊報\n(1)\n312##.##", "指揮\n(0)\n313##.##", "互助移解\n(12)\n314##.##", "通緝\n(5)\n315##.##", "驗屍\n(5)\n316##.##", "定讞\n(3)\n317##.##", "執行\n(7)\n318##.##", "其他\n(2)\n319##.##"] },
+            { name: "人身自由\n(42)\n32###.##", objs: ["人命\n(5)\n321##.##", "毆傷\n(16)\n322##.##", "勒贖\n(1)\n323##.##", "誘拐\n(8)\n324##.##", "略賣\n(7)\n325##.##", "擄禁\n(0)\n326##.##", "擄搶\n(5)\n327##.##"] },
+            { name: "財產侵奪\n(0)\n33###.##", objs: ["竊盜\n(0)\n331##.##", "搶奪\n(0)\n332##.##", "強盜\n(0)\n333##.##", "強盜殺傷\n(0)\n334##.##", "海盜\n(0)\n335##.##", "恐嚇\n(0)\n336##.##", "詐欺\n(0)\n337##.##", "盜賣\n(0)\n338##.##", "毀棄\n(0)\n339##.##"] },
+            { name: "公共秩序\n(11)\n34###.##", objs: ["匪徒\n(3)\n341##.##", "侵害水源\n(2)\n342##.##", "騷擾\n(6)\n343##.##", "謠言\n(0)\n344##.##"] },
+            { name: "風化\n(14)\n35###.##", objs: ["忤逆\n(2)\n351##.##", "毀墳\n(10)\n352##.##", "通姦\n(2)\n353##.##", "拐姦\n(0)\n354##.##", "賭博\n(0)\n355##.##"] }
         ]
     }
 ];
@@ -636,6 +634,7 @@ var contents = [
     }
 ]
 
+//切換目錄類型
 document.getElementById("contentsBtn").addEventListener("click", function () {
     document.getElementById("excelDataTable").innerHTML = "";
     buildContents("#excelDataTable");
@@ -653,7 +652,6 @@ if (id) {
     container.innerHTML = "";
     for (item of fileName) {
         if (item.lastIndexOf(id, 0) == 0) {
-            // console.log(item);
             container.innerHTML += "<p class = \"downloadLink\"><a href=\"../pdf/" + item + ".pdf\" download= \"" + item + ".pdf\"" + ">" + item + "</a></p>";
         }
     }
@@ -663,7 +661,20 @@ if (id) {
     // buildContents("#excelDataTable")
 }
 
-//用json建立表格
+function buildCaseTitle(value) {
+    var caseTitle = document.createElement("p");
+    caseTitle.setAttribute("class", "caseTitle");
+    caseTitle.textContent = value.slice(0, value.indexOf("\n"))
+    return caseTitle
+}
+
+function buildCaseInfo(value) {
+    var caseInfo = document.createElement("p");
+    caseInfo.setAttribute("class", "caseInfo");
+    caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
+    return caseInfo
+}
+//建立總目錄
 function buildHtmlTable(selector) {
     var table = document.querySelector(selector);
 
@@ -678,18 +689,8 @@ function buildHtmlTable(selector) {
                 var th = document.createElement("th");
                 var value = group.title
                 th.setAttribute("rowspan", rowspan);
-
-                var caseTitle = document.createElement("p");
-                caseTitle.setAttribute("class", "caseTitle");
-                caseTitle.textContent = value.slice(0, value.indexOf("\n"))
-                console.log(caseTitle.textContent, value.indexOf("\n"))
-                th.appendChild(caseTitle);
-
-                var caseInfo = document.createElement("p");
-                caseInfo.setAttribute("class", "caseInfo");
-                caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
-                console.log(caseInfo.textContent, value.indexOf("\n"))
-                th.appendChild(caseInfo);
+                th.appendChild(buildCaseTitle(value));
+                th.appendChild(buildCaseInfo(value));
 
                 row.appendChild(th);
             }
@@ -697,61 +698,43 @@ function buildHtmlTable(selector) {
             // sub title
             var subTh = document.createElement("th");
             var value = group.items[j].name;
-
-            var caseTitle = document.createElement("p");
-            caseTitle.setAttribute("class", "caseTitle");
-            caseTitle.textContent = value.slice(0, value.indexOf("\n"))
-            console.log(caseTitle.textContent, value.indexOf("\n"))
-            subTh.appendChild(caseTitle);
-
-            var caseInfo = document.createElement("p");
-            caseInfo.setAttribute("class", "caseInfo");
-            caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
-            console.log(caseInfo.textContent, value.indexOf("\n"))
-            subTh.appendChild(caseInfo);
+            subTh.appendChild(buildCaseTitle(value));
+            subTh.appendChild(buildCaseInfo(value));
 
             row.appendChild(subTh);
 
             // objects
-            for (var k = 1; k <= 9; k++) {
-                var value = group.items[j]['obj' + k] || "";
-                var fileNum = value ? value.slice(value.indexOf("(") + 1, value.indexOf(")")) : "";
+            var objs = group.items[j].objs || [];
 
+            for (let i = 0; i < 9; i++) {
+                var value = objs[i] || "";
+                var fileNum = value ? value.slice(value.indexOf("(") + 1, value.indexOf(")")) : "";
                 var idNumber = value ? value.slice(-8, -5) : "";
                 var td = document.createElement("td");
 
                 if (value) {
-                    //如果沒有案件可以下載就不要做連結
+                    let link;
+                    // 如果沒有案件可以下載就不要做連結
                     if (fileNum == "0") {
-                        var link = document.createElement("p")
-                    }
-                    else {
-                        var link = document.createElement("a");
+                        link = document.createElement("p");
+                    } else {
+                        link = document.createElement("a");
                         link.setAttribute("href", "../index.html?id=" + idNumber);
                     }
 
-                    var caseTitle = document.createElement("p");
-                    caseTitle.setAttribute("class", "caseTitle");
-                    caseTitle.textContent = value.slice(0, value.indexOf("\n"))
-                    console.log(caseTitle.textContent, value.indexOf("\n"))
-                    link.appendChild(caseTitle);
-
-                    var caseInfo = document.createElement("p");
-                    caseInfo.setAttribute("class", "caseInfo");
-                    caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
-                    console.log(caseInfo.textContent, value.indexOf("\n"))
-                    link.appendChild(caseInfo);
-
+                    link.appendChild(buildCaseTitle(value));
+                    link.appendChild(buildCaseInfo(value));
                     link.setAttribute("id", idNumber);
+
                     td.appendChild(link);
                 }
                 row.appendChild(td);
-            }
+            };
             table.appendChild(row);
         }
     }
 }
-
+//建立簡明目錄
 function buildContents(selector) {
     var table = document.querySelector(selector);
     var columns = addAllColumnHeaders(contents, selector);
@@ -761,6 +744,7 @@ function buildContents(selector) {
         for (var colIndex = 0; colIndex < columns.length; colIndex++) {
             var td = document.createElement("td");
             var cellValue = contents[i][columns[colIndex]];
+
             if (cellValue == null) cellValue = "";
             td.textContent = cellValue;
             row.appendChild(td);
@@ -768,10 +752,6 @@ function buildContents(selector) {
         table.appendChild(row);
     }
 }
-
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records.
 function addAllColumnHeaders(contents, selector) {
     var table = document.querySelector(selector);
     var columnSet = [];
@@ -791,4 +771,59 @@ function addAllColumnHeaders(contents, selector) {
     table.appendChild(headerTr);
 
     return columnSet;
+}
+
+const titleSelect = document.getElementById("doorSelect");
+const nameSelect = document.getElementById("cateSelect");
+const objSelect = document.getElementById("secSelect");
+
+// Populate title dropdown
+myList.forEach((d, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = d.title.slice(0, d.title.indexOf("\n"));
+    titleSelect.appendChild(option);
+});
+
+titleSelect.addEventListener("change", () => {
+    const selectedIndex = titleSelect.value;
+    nameSelect.innerHTML = "";
+    const items = myList[selectedIndex].items;
+
+    items.forEach((item, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = item.name.slice(0, item.name.indexOf("\n"));
+        nameSelect.appendChild(option);
+    });
+
+    //Auto-select first item
+    nameSelect.value = "0";
+    nameSelect.dispatchEvent(new Event("change"));
+});
+
+// When name changes → populate objects
+nameSelect.addEventListener("change", () => {
+    const titleIndex = titleSelect.value;
+    const nameIndex = nameSelect.value;
+
+    objSelect.innerHTML = "";
+
+    const selectedItem = myList[titleIndex].items[nameIndex];
+
+    selectedItem.objs.forEach(obj => {
+        const option = document.createElement("option");
+        option.value = obj;
+        option.textContent = obj.slice(0, obj.indexOf("\n"));;
+        objSelect.appendChild(option);
+    });
+
+    //Auto-select first item
+    objSelect.value = selectedItem.objs[0];
+});
+
+//Auto select first title
+if (myList.length > 0) {
+    titleSelect.value = "0";
+    titleSelect.dispatchEvent(new Event("change"));
 }
