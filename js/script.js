@@ -1,11 +1,25 @@
-//切換目錄類型
-document.getElementById("contentsBtn").addEventListener("click", function () {
-    document.getElementById("excelDataTable").innerHTML = "";
-    buildContents("#excelDataTable");
-})
+const doorSelect = document.getElementById("doorSelect");
+const cateSelect = document.getElementById("cateSelect");
+const secSelect = document.getElementById("secSelect");
+doorSelect.style.display = "none"
+cateSelect.style.display = "none"
+secSelect.style.display = "none"
+
+//切換到總表
 document.getElementById("tableBtn").addEventListener("click", function () {
-    document.getElementById("excelDataTable").innerHTML = "";
-    buildHtmlTable("#excelDataTable");
+    doorSelect.style.display = "none"
+    cateSelect.style.display = "none"
+    secSelect.style.display = "none"
+    buildHtmlTable();
+})
+//切換到簡明目錄
+document.getElementById("contentsBtn").addEventListener("click", function () {
+    doorSelect.style.display = "inline-block"
+    cateSelect.style.display = "inline-block"
+    secSelect.style.display = "inline-block"
+    //自動選第一個選項
+    doorSelect.value = "1";
+    doorSelect.dispatchEvent(new Event("change"));
 })
 
 //用id換不同的內容
@@ -21,7 +35,7 @@ if (id) {
     }
 
 } else {
-    buildHtmlTable("#excelDataTable");  // show table
+    buildHtmlTable();  // show table
     // buildContents("#excelDataTable")
 }
 
@@ -39,9 +53,9 @@ function buildCaseInfo(value) {
     return caseInfo
 }
 //建立總目錄
-function buildHtmlTable(selector) {
-    var table = document.querySelector(selector);
-
+function buildHtmlTable() {
+    var table = document.querySelector("#excelDataTable");
+    table.innerHTML = "";
     for (var i = 0; i < myList.length; i++) {
         var group = myList[i];
         var rowspan = group.items.length;
@@ -99,21 +113,24 @@ function buildHtmlTable(selector) {
     }
 }
 //建立簡明目錄
-function buildContents(selector) {
-    var table = document.querySelector(selector);
-    var columns = addAllColumnHeaders(contents, selector);
-
+function buildContents(findId) {
+    var table = document.querySelector("#excelDataTable");
+    table.innerHTML = "";
+    var columns = addAllColumnHeaders(contents, "#excelDataTable");
     for (var i = 0; i < contents.length; i++) {
-        var row = document.createElement("tr");;
-        for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-            var td = document.createElement("td");
-            var cellValue = contents[i][columns[colIndex]];
+        // console.log(contents[i].id)
+        if (contents[i].文件下載.indexOf(findId) == 0) {
+            var row = document.createElement("tr");
+            for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                var td = document.createElement("td");
+                var cellValue = contents[i][columns[colIndex]];
 
-            if (cellValue == null) cellValue = "";
-            td.textContent = cellValue;
-            row.appendChild(td);
+                if (cellValue == null) cellValue = "";
+                td.textContent = cellValue;
+                row.appendChild(td);
+            }
+            table.appendChild(row);
         }
-        table.appendChild(row);
     }
 }
 function addAllColumnHeaders(contents, selector) {
@@ -137,57 +154,58 @@ function addAllColumnHeaders(contents, selector) {
     return columnSet;
 }
 
-const titleSelect = document.getElementById("doorSelect");
-const nameSelect = document.getElementById("cateSelect");
-const objSelect = document.getElementById("secSelect");
-
-// Populate title dropdown
+//製作門選單
 myList.forEach((d, index) => {
     const option = document.createElement("option");
-    option.value = index;
-    option.textContent = d.title.slice(0, d.title.indexOf("\n"));
-    titleSelect.appendChild(option);
+    option.value = index + 1;
+    option.textContent = option.value + " " + d.title.slice(0, d.title.indexOf("\n"));
+    doorSelect.appendChild(option);
 });
 
-titleSelect.addEventListener("change", () => {
-    const selectedIndex = titleSelect.value;
-    nameSelect.innerHTML = "";
+//門
+doorSelect.addEventListener("change", () => {
+    console.log(doorSelect.value)
+    const selectedIndex = doorSelect.value - 1;
+    cateSelect.innerHTML = "";
     const items = myList[selectedIndex].items;
 
     items.forEach((item, index) => {
         const option = document.createElement("option");
-        option.value = index;
-        option.textContent = item.name.slice(0, item.name.indexOf("\n"));
-        nameSelect.appendChild(option);
+        option.value = index + 1;
+        option.textContent = option.value + " " + item.name.slice(0, item.name.indexOf("\n"));
+        cateSelect.appendChild(option);
     });
 
-    //Auto-select first item
-    nameSelect.value = "0";
-    nameSelect.dispatchEvent(new Event("change"));
+    //自動選第一個選項
+    cateSelect.value = "1";
+    cateSelect.dispatchEvent(new Event("change"));
 });
 
-// When name changes → populate objects
-nameSelect.addEventListener("change", () => {
-    const titleIndex = titleSelect.value;
-    const nameIndex = nameSelect.value;
-
-    objSelect.innerHTML = "";
+//類
+cateSelect.addEventListener("change", () => {
+    const titleIndex = doorSelect.value - 1;
+    const nameIndex = cateSelect.value - 1;
+    console.log(cateSelect.value)
+    secSelect.innerHTML = "";
 
     const selectedItem = myList[titleIndex].items[nameIndex];
 
-    selectedItem.objs.forEach(obj => {
+    selectedItem.objs.forEach((obj, index) => {
         const option = document.createElement("option");
-        option.value = obj;
-        option.textContent = obj.slice(0, obj.indexOf("\n"));;
-        objSelect.appendChild(option);
+        option.value = index + 1;
+        option.textContent = option.value + " " + obj.slice(0, obj.indexOf("\n"));
+        secSelect.appendChild(option);
     });
 
-    //Auto-select first item
-    objSelect.value = selectedItem.objs[0];
+    //自動選第一個選項
+    secSelect.value = "1";
+    secSelect.dispatchEvent(new Event("change"));
 });
 
-//Auto select first title
-if (myList.length > 0) {
-    titleSelect.value = "0";
-    titleSelect.dispatchEvent(new Event("change"));
-}
+//款
+secSelect.addEventListener("change", () => {
+    console.log(secSelect.value)
+    var findId = doorSelect.value + cateSelect.value + secSelect.value
+    console.log(findId)
+    buildContents(findId);
+})
