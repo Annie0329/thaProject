@@ -3,7 +3,8 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: 'writesTaiWeb';
-    font-size: 32px;
+    font-size: 48px;
+    /* 用h表示 */
 }
 
 @font-face {
@@ -36,5 +37,5 @@ a {
 }
 
 .caseTitle {
-    font-size: 32px;
+    font-size: 36px;
 }
