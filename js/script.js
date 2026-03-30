@@ -155,6 +155,11 @@ function addAllColumnHeaders(contents, selector) {
 }
 
 //製作門選單
+// const option = document.createElement("option");
+// option.value = "0";
+// option.textContent = "全部"
+// doorSelect.appendChild(option);
+
 myList.forEach((d, index) => {
     const option = document.createElement("option");
     option.value = index + 1;
