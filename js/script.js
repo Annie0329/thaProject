@@ -35,23 +35,23 @@ if (id) {
     }
 
 } else {
-    buildHtmlTable();  // show table
-    // buildContents("#excelDataTable")
+    buildHtmlTable();
 }
 
+//增加標題和資訊
 function buildCaseTitle(value) {
     var caseTitle = document.createElement("p");
     caseTitle.setAttribute("class", "caseTitle");
     caseTitle.textContent = value.slice(0, value.indexOf("\n"))
     return caseTitle
 }
-
 function buildCaseInfo(value) {
     var caseInfo = document.createElement("p");
     caseInfo.setAttribute("class", "caseInfo");
     caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
     return caseInfo
 }
+
 //建立總目錄
 function buildHtmlTable() {
     var table = document.querySelector("#excelDataTable");
@@ -112,11 +112,16 @@ function buildHtmlTable() {
         }
     }
 }
+
 //建立簡明目錄
 function buildContents(findId) {
     var table = document.querySelector("#excelDataTable");
     table.innerHTML = "";
     var columns = addAllColumnHeaders(contents, "#excelDataTable");
+    if (findId.indexOf("0") != -1) {
+        findId = findId.slice(0, findId.indexOf("0"));
+        console.log(findId)
+    }
     for (var i = 0; i < contents.length; i++) {
         // console.log(contents[i].id)
         if (contents[i].文件下載.indexOf(findId) == 0) {
@@ -153,64 +158,3 @@ function addAllColumnHeaders(contents, selector) {
 
     return columnSet;
 }
-
-//製作門選單
-// const option = document.createElement("option");
-// option.value = "0";
-// option.textContent = "全部"
-// doorSelect.appendChild(option);
-
-myList.forEach((d, index) => {
-    const option = document.createElement("option");
-    option.value = index + 1;
-    option.textContent = option.value + " " + d.title.slice(0, d.title.indexOf("\n"));
-    doorSelect.appendChild(option);
-});
-
-//門
-doorSelect.addEventListener("change", () => {
-    console.log(doorSelect.value)
-    const selectedIndex = doorSelect.value - 1;
-    cateSelect.innerHTML = "";
-    const items = myList[selectedIndex].items;
-
-    items.forEach((item, index) => {
-        const option = document.createElement("option");
-        option.value = index + 1;
-        option.textContent = option.value + " " + item.name.slice(0, item.name.indexOf("\n"));
-        cateSelect.appendChild(option);
-    });
-
-    //自動選第一個選項
-    cateSelect.value = "1";
-    cateSelect.dispatchEvent(new Event("change"));
-});
-
-//類
-cateSelect.addEventListener("change", () => {
-    const titleIndex = doorSelect.value - 1;
-    const nameIndex = cateSelect.value - 1;
-    console.log(cateSelect.value)
-    secSelect.innerHTML = "";
-
-    const selectedItem = myList[titleIndex].items[nameIndex];
-
-    selectedItem.objs.forEach((obj, index) => {
-        const option = document.createElement("option");
-        option.value = index + 1;
-        option.textContent = option.value + " " + obj.slice(0, obj.indexOf("\n"));
-        secSelect.appendChild(option);
-    });
-
-    //自動選第一個選項
-    secSelect.value = "1";
-    secSelect.dispatchEvent(new Event("change"));
-});
-
-//款
-secSelect.addEventListener("change", () => {
-    console.log(secSelect.value)
-    var findId = doorSelect.value + cateSelect.value + secSelect.value
-    console.log(findId)
-    buildContents(findId);
-})
