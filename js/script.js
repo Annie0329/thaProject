@@ -39,17 +39,16 @@ if (id) {
 }
 
 //增加標題和資訊
-function buildCaseTitle(value) {
+function buildCase(element, value) {
     var caseTitle = document.createElement("p");
     caseTitle.setAttribute("class", "caseTitle");
     caseTitle.textContent = value.slice(0, value.indexOf("\n"))
-    return caseTitle
-}
-function buildCaseInfo(value) {
+    element.appendChild(caseTitle)
+
     var caseInfo = document.createElement("p");
     caseInfo.setAttribute("class", "caseInfo");
     caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
-    return caseInfo
+    element.appendChild(caseInfo)
 }
 
 //建立總目錄
@@ -67,18 +66,14 @@ function buildHtmlTable() {
                 var th = document.createElement("th");
                 var value = group.title
                 th.setAttribute("rowspan", rowspan);
-                th.appendChild(buildCaseTitle(value));
-                th.appendChild(buildCaseInfo(value));
-
+                buildCase(th, value);
                 row.appendChild(th);
             }
 
             // sub title
             var subTh = document.createElement("th");
             var value = group.items[j].name;
-            subTh.appendChild(buildCaseTitle(value));
-            subTh.appendChild(buildCaseInfo(value));
-
+            buildCase(subTh, value);
             row.appendChild(subTh);
 
             // objects
@@ -100,8 +95,7 @@ function buildHtmlTable() {
                         link.setAttribute("href", "../index.html?id=" + idNumber);
                     }
 
-                    link.appendChild(buildCaseTitle(value));
-                    link.appendChild(buildCaseInfo(value));
+                    buildCase(link, value);
                     link.setAttribute("id", idNumber);
 
                     td.appendChild(link);
@@ -118,6 +112,7 @@ function buildContents(findId) {
     var table = document.querySelector("#excelDataTable");
     table.innerHTML = "";
     var columns = addAllColumnHeaders(contents, "#excelDataTable");
+    //根據選單顯示對應的案件
     if (findId.indexOf("0") != -1) {
         findId = findId.slice(0, findId.indexOf("0"));
         console.log(findId)
