@@ -24,7 +24,7 @@
 
 - [v]F4: 美編
     - [v]T4.1: 將網站文字換成writesTai
-    - [ ]T4.2: (無限遞迴)補齊writesTai缺字(用Font Diffuser)
+    - [v]T4.2: 補齊writesTai缺字(直接用Font Diffuser 13000字下去)
     - [ ]T4.3: 製作淡新檔案字型
         - [ ]T4.3.1: 選擇要製作成字型的手稿
         - [ ]T4.3.2: 找到足夠的手稿，湊滿800字

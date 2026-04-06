@@ -2,16 +2,16 @@
 body {
     padding: 0px;
     margin: 0px;
-    font-family: 'writesTaiWeb';
-    font-size: 48px;
+    font-family: 'writesTaiWeb_FD';
+    font-size: 36px;
     /* 用h表示 */
 }
 
 @font-face {
-    font-family: 'writesTaiWeb';
+    font-family: 'writesTaiWeb_FD';
     src:
-        url('../fonts/writesTaiWeb.ttf') format("ttf"),
-        url('../fonts/writesTaiWeb.woff2')format("woff2")
+        url('../fonts/writesTaiWeb_FD.ttf') format("ttf"),
+        url('../fonts/writesTaiWeb_FD.woff2')format("woff2")
 }
 
 table {
