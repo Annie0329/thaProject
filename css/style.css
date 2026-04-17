@@ -14,6 +14,17 @@ body {
         url('../fonts/writesTaiWeb_FD.woff2')format("woff2")
 }
 
+@font-face {
+    font-family: 'tanHsinFont';
+    src:
+        url('../fonts/tanHsinFont.ttf') format("ttf"),
+        url('../fonts/tanHsinFont.woff2')format("woff2")
+}
+
+.test {
+    font-family: 'tanHsinFont';
+}
+
 table {
     width: 100%;
     white-space: pre-wrap;
