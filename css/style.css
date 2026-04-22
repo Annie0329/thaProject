@@ -1,10 +1,18 @@
-*,
 body {
     padding: 0px;
     margin: 0px;
-    font-family: 'writesTaiWeb_FD';
+    font-family: 'tanHsinFont_FD';
     font-size: 36px;
     /* 用h表示 */
+}
+
+/* 我們都愛繼承 */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
 }
 
 @font-face {
@@ -15,14 +23,10 @@ body {
 }
 
 @font-face {
-    font-family: 'tanHsinFont';
+    font-family: 'tanHsinFont_FD';
     src:
-        url('../fonts/tanHsinFont.ttf') format("ttf"),
-        url('../fonts/tanHsinFont.woff2')format("woff2")
-}
-
-.test {
-    font-family: 'tanHsinFont';
+        url('../fonts/tanHsinFont_FD.ttf') format("ttf"),
+        url('../fonts/tanHsinFont_FD.woff2')format("woff2")
 }
 
 table {

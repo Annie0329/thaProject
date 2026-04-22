@@ -22,6 +22,13 @@ document.getElementById("contentsBtn").addEventListener("click", function () {
     doorSelect.dispatchEvent(new Event("change"));
 })
 
+//切換字型
+fontSelect = document.getElementById("fontSelect")
+fontSelect.addEventListener('change', () => {
+    console.log(fontSelect.value)
+    document.body.style.fontFamily = fontSelect.value
+});
+
 //用id換不同的內容
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");

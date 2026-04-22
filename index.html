@@ -6,28 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>淡新檔案檢索</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="preload" href="./fonts/tanHsinFont_FD.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./fonts/tanHsinFont_FD.woff2" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./fonts/writesTaiWeb_FD.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./fonts/writesTaiWeb_FD.woff2" as="font" crossorigin="anonymous" />
 </head>
 
 <body>
-    <!-- <p class="test">
-        供詞義子酌分田產据郑年卅三歲永青縣人父故庻母在有兄弟無妻小的現住本城暗仔賣梹榔度活因這心存不正当時親璧日立継被陳氏逐出外只一去间身丟銭可做生理回家与較資毫肯堂鄭昆主唆赴轅控告守今蒙提訊明察係螟能之対宅照例断令租十石按銀壹百元仍着繳案交收領甘愿具完從以後改過自新敢再争滋事總求𫔭恩了四婦丈夫蛉帰宗餘載久至每到窃偷物件变賭博並吃洋烟花銷他知聽何叠中声称欲要奈價給其統遠業准就是街衙门充辦伯将胆囬致痛恨呈非丁族長那超俊𬋩五俱香間姪投忍坐視劝多少查房应经已調處及而訟干預光緒弍叁月廿驗單実聚衆僉禀治下竹北二保枋藔庄林如蘭范榮昇甲牌隊等為據情肅規切遵諭該公務約束歷經數苟縁民邱清溪初九稱番通錢國殿伊藉索前措云匿抗承於乾隆墾闢七徐僅貳抽字號并单管異看確貼加憑曲言未定料早又說帶猛擄毆擁搶即往舉狼狽伏思直縱鄉里亦庭得此擅行廢法壤忝属奉地方責咎實懇陞憲大老爺電施沾叩否屬候飭差覆
-    </p> -->
     <!-- 內容 -->
     <div id="content">
         <!-- 切換按鈕 -->
         <button id="tableBtn">總表</button>
         <button id="contentsBtn">簡明目錄</button>
+        <!-- 切換字型 -->
+        <select id="fontSelect">
+            <option value='tanHsinFont_FD'>淡新字型</option>
+            <option value='writesTaiWeb_FD'>方言字型</option>
+        </select>
         <!-- 門 -->
-        <select name="" id="doorSelect"></select>
+        <select id="doorSelect"></select>
         <!-- 類 -->
-        <select name="" id="cateSelect"></select>
+        <select id="cateSelect"></select>
         <!-- 款 -->
-        <select name="" id="secSelect"></select>
+        <select id="secSelect"></select>
         <!-- 檢索表格 -->
         <table id="excelDataTable"></table>
     </div>
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <script src="./js/myList.js"></script>
     <script src="./js/contents.js"></script>
     <script src="./js/fileName.js"></script>
