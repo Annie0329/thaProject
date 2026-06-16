@@ -29,7 +29,7 @@ document.getElementById("contentsBtn").addEventListener("click", function () {
 fontSelect = document.getElementById("fontSelect")
 fontSelect.addEventListener('change', () => {
     console.log(fontSelect.value)
-    document.body.style.fontFamily = fontSelect.value
+    document.body.style.fontFamily = fontSelect.value + ',\'tanHsinFont_FD\''
 });
 
 //用id換不同的內容

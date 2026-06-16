@@ -1,7 +1,7 @@
 body {
     padding: 0px;
     margin: 0px;
-    font-family: 'tanHsinFont_FD';
+    font-family: 'tanHsinFont_FD', 'writesTaiWeb_FD';
     font-size: 36px;
     /* 用h表示 */
 }
