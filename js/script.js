@@ -1,10 +1,13 @@
 const doorSelect = document.getElementById("doorSelect");
 const cateSelect = document.getElementById("cateSelect");
 const secSelect = document.getElementById("secSelect");
+const content = document.getElementById("content");
+const downloadZone = document.getElementById("downloadZone");
 doorSelect.style.display = "none"
 cateSelect.style.display = "none"
 secSelect.style.display = "none"
-
+downloadZone.style.display = "none"
+buildHtmlTable();
 //切換到總表
 document.getElementById("tableBtn").addEventListener("click", function () {
     doorSelect.style.display = "none"
@@ -30,21 +33,25 @@ fontSelect.addEventListener('change', () => {
 });
 
 //用id換不同的內容
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-if (id) {
-    const container = document.getElementById("content");
-    container.innerHTML = "";
-    for (item of fileName) {
-        if (item.lastIndexOf(id, 0) == 0) {
-            container.innerHTML += "<p class = \"downloadLink\"><a href=\"../pdf/" + item + ".pdf\" download= \"" + item + ".pdf\"" + ">" + item + "</a></p>";
+const links = document.querySelectorAll(".contentLink");
+links.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+        event.preventDefault();
+        content.style.display = "none"
+        downloadZone.style.display = "inline-block"
+        downloadZone.innerHTML = "<button onclick=\"back()\">回首頁</button>"
+        for (item of fileName) {
+            if (item.lastIndexOf(this.id, 0) == 0) {
+                downloadZone.innerHTML += "<p class = \"downloadLink\"><a href=\"../pdf/" + item + ".pdf\" download= \"" + item + ".pdf\"" + ">" + item + "</a></p>";
+            }
         }
-    }
+    });
+});
 
-} else {
-    buildHtmlTable();
+function back() {
+    content.style.display = "inline-block"
+    downloadZone.style.display = "none"
 }
-
 //增加標題和資訊
 function buildCase(element, value) {
     var caseTitle = document.createElement("p");
@@ -99,10 +106,11 @@ function buildHtmlTable() {
                         link = document.createElement("p");
                     } else {
                         link = document.createElement("a");
-                        link.setAttribute("href", "https://annie0329.github.io/thaProject/index.html?id=" + idNumber);
+                        link.setAttribute("href", "");
                     }
 
                     buildCase(link, value);
+                    link.setAttribute("class", "contentLink");
                     link.setAttribute("id", idNumber);
 
                     td.appendChild(link);
