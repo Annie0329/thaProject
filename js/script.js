@@ -99,7 +99,7 @@ function buildHtmlTable() {
                         link = document.createElement("p");
                     } else {
                         link = document.createElement("a");
-                        link.setAttribute("href", "./../index.html?id=" + idNumber);
+                        link.setAttribute("href", "https://annie0329.github.io/thaProject/index.html?id=" + idNumber);
                     }
 
                     buildCase(link, value);
