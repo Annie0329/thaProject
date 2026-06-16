@@ -133,21 +133,29 @@ function buildContents(findId) {
         console.log(findId)
     }
     for (var i = 0; i < contents.length; i++) {
-        // console.log(contents[i].id)
         if (contents[i].文件下載.indexOf(findId) == 0) {
             var row = document.createElement("tr");
             for (var colIndex = 0; colIndex < columns.length; colIndex++) {
                 var td = document.createElement("td");
                 var cellValue = contents[i][columns[colIndex]];
 
-                if (cellValue == null) cellValue = "";
-                td.textContent = cellValue;
+                if (columns[colIndex] === "文件下載" && fileName.includes(cellValue)) {
+                    var link = document.createElement("a");
+                    link.href = "../pdf/" + cellValue + ".pdf"
+                    link.textContent = cellValue;
+                    link.download = cellValue + ".pdf";
+                    td.appendChild(link);
+                } else {
+                    if (cellValue == null) cellValue = "";
+                    td.textContent = cellValue;
+                }
                 row.appendChild(td);
             }
             table.appendChild(row);
         }
     }
 }
+
 function addAllColumnHeaders(contents, selector) {
     var table = document.querySelector(selector);
     var columnSet = [];
