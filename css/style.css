@@ -3,6 +3,8 @@ body {
     margin: 0px;
     font-family: 'tanHsinFont_FD', 'writesTaiWeb_FD';
     font-size: 36px;
+    background-image: url('../images/bg.png');
+    background-repeat: repeat;
     /* 用h表示 */
 }
 
