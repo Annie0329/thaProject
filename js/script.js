@@ -42,7 +42,7 @@ links.forEach(function (link) {
         downloadZone.innerHTML = "<button onclick=\"back()\">回首頁</button>"
         for (item of fileName) {
             if (item.lastIndexOf(this.id, 0) == 0) {
-                downloadZone.innerHTML += "<p class = \"downloadLink\"><a href=\"./pdf/" + item + ".pdf\" download= \"" + item + ".pdf\"" + ">" + item + "</a></p>";
+                downloadZone.innerHTML += "<p class = \"downloadLink\"><a href=\"./pdf/" + item + ".pdf\" target=\"_blank\">" + item + "</a></p>";
             }
         }
     });
@@ -143,7 +143,7 @@ function buildContents(findId) {
                     var link = document.createElement("a");
                     link.href = "./pdf/" + cellValue + ".pdf"
                     link.textContent = cellValue;
-                    link.download = cellValue + ".pdf";
+                    link.target = "_blank"
                     td.appendChild(link);
                 } else {
                     if (cellValue == null) cellValue = "";
