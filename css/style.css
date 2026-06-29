@@ -31,6 +31,18 @@ textarea {
         url('../fonts/tanHsinFont_FD.woff2')format("woff2")
 }
 
+@font-face {
+    font-family: 'TW-Kai';
+    src:
+        url('../fonts/TW-Kai-98_1.ttf') format("truetype")
+}
+
+@font-face {
+    font-family: 'font_851tegakizatsu';
+    src:
+        url('../fonts/font_851tegakizatsu.ttf') format("truetype")
+}
+
 table {
     width: 100%;
     white-space: pre-wrap;
