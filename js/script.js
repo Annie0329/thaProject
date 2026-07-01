@@ -20,8 +20,8 @@ document.getElementById("contentsBtn").addEventListener("click", function () {
     doorSelect.style.display = "inline-block"
     cateSelect.style.display = "inline-block"
     secSelect.style.display = "inline-block"
-    //自動選第一個選項
-    doorSelect.value = "1";
+    //自動預設選到「全部」
+    doorSelect.value = "0";
     doorSelect.dispatchEvent(new Event("change"));
 })
 

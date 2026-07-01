@@ -13,10 +13,10 @@ doorSelect.appendChild(option);
 
 //門
 doorSelect.addEventListener("change", () => {
-    // console.log(doorSelect.value)
+    // console.log("門：" + doorSelect.value)
     if (doorSelect.value == "0") {
         cateSelect.value = "0"
-        cateSelect[cateSelect.selectedIndex].text = "--"
+        cateSelect.innerHTML = "<option value='0'>--</option>"
         cateSelect.disabled = true;
     } else {
         //製作類選單
@@ -46,7 +46,7 @@ cateSelect.addEventListener("change", () => {
     // console.log(cateSelect.value)
     if (cateSelect.value == "0") {
         secSelect.value = "0"
-        secSelect[secSelect.selectedIndex].text = "--"
+        secSelect.innerHTML = "<option value='0'>--</option>"
         secSelect.disabled = true;
     } else {
         //製作款選單
@@ -73,7 +73,7 @@ cateSelect.addEventListener("change", () => {
 
 //款
 secSelect.addEventListener("change", () => {
-    // console.log(secSelect.value)
     var findId = doorSelect.value + cateSelect.value + secSelect.value
+    console.log(findId)
     buildContents(findId);
 })
