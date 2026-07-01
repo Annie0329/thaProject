@@ -5,7 +5,8 @@ body {
     font-size: 36px;
     background-image: url('../images/bg.png');
     background-repeat: repeat;
-    /* 用h表示 */
+    height: 100vh;
+    display: flex;
 }
 
 /* 我們都愛繼承 */

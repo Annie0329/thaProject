@@ -3,26 +3,24 @@ const cateSelect = document.getElementById("cateSelect");
 const secSelect = document.getElementById("secSelect");
 const content = document.getElementById("content");
 const downloadZone = document.getElementById("downloadZone");
-doorSelect.style.display = "none"
-cateSelect.style.display = "none"
-secSelect.style.display = "none"
 downloadZone.style.display = "none"
-buildHtmlTable();
+var searchType = "table"
+
+buildHtmlTable("");
 //切換到總表
 document.getElementById("tableBtn").addEventListener("click", function () {
-    doorSelect.style.display = "none"
-    cateSelect.style.display = "none"
-    secSelect.style.display = "none"
-    buildHtmlTable();
+    searchType = "table"
+    doorSelect.value = "0";
+    doorSelect.dispatchEvent(new Event("change"));
+    buildHtmlTable("");
 })
 //切換到簡明目錄
 document.getElementById("contentsBtn").addEventListener("click", function () {
-    doorSelect.style.display = "inline-block"
-    cateSelect.style.display = "inline-block"
-    secSelect.style.display = "inline-block"
+    searchType = "content"
     //自動預設選到「全部」
     doorSelect.value = "0";
     doorSelect.dispatchEvent(new Event("change"));
+    buildContents("");
 })
 
 //切換字型
@@ -33,24 +31,29 @@ fontSelect.addEventListener('change', () => {
 });
 
 //用id換不同的內容
-const links = document.querySelectorAll(".contentLink");
-links.forEach(function (link) {
-    link.addEventListener('click', function (event) {
-        event.preventDefault();
-        content.style.display = "none"
-        downloadZone.style.display = "inline-block"
-        downloadZone.innerHTML = "<button onclick=\"back()\">回首頁</button>"
-        for (item of fileName) {
-            if (item.lastIndexOf(this.id, 0) == 0) {
-                downloadZone.innerHTML += "<p class = \"downloadLink\"><a href=\"./pdf/" + item + ".pdf\" target=\"_blank\">" + item + "</a></p>";
-            }
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+if (id) {
+    content.style.display = "none"
+    downloadZone.style.display = "inline-block"
+    downloadZone.innerHTML = "<button onclick=\"back()\">回首頁</button>"
+    for (item of fileName) {
+        if (item.lastIndexOf(id, 0) == 0) {
+            downloadZone.innerHTML += "<p class = \"downloadLink\"><a href=\"./pdf/" + item + ".pdf\" target=\"_blank\">" + item + "</a></p>";
         }
-    });
-});
+    }
 
+} else {
+    doorSelect.value = "0";
+    doorSelect.dispatchEvent(new Event("change"));
+    buildHtmlTable("");
+}
+
+//回首頁
 function back() {
     content.style.display = "inline-block"
     downloadZone.style.display = "none"
+    window.history.replaceState({}, '', './index.html');
 }
 //增加標題和資訊
 function buildCase(element, value) {
@@ -66,72 +69,85 @@ function buildCase(element, value) {
 }
 
 //建立總目錄
-function buildHtmlTable() {
+function buildHtmlTable(findId) {
     var table = document.querySelector("#excelDataTable");
     table.innerHTML = "";
+    let groupRendered = false;
+    //門
     for (var i = 0; i < myList.length; i++) {
+        let groupRendered = false;
         var group = myList[i];
-        var rowspan = group.items.length;
-
-        for (var j = 0; j < group.items.length; j++) {
-            var row = document.createElement("tr");
-
-            if (j === 0) {
-                var th = document.createElement("th");
-                var value = group.title
-                th.setAttribute("rowspan", rowspan);
-                buildCase(th, value);
-                row.appendChild(th);
-            }
-
-            // sub title
-            var subTh = document.createElement("th");
-            var value = group.items[j].name;
-            buildCase(subTh, value);
-            row.appendChild(subTh);
-
-            // objects
-            var objs = group.items[j].objs || [];
-
-            for (let i = 0; i < 9; i++) {
-                var value = objs[i] || "";
-                var fileNum = value ? value.slice(value.indexOf("(") + 1, value.indexOf(")")) : "";
-                var idNumber = value ? value.slice(-8, -5) : "";
-                var td = document.createElement("td");
-
-                if (value) {
-                    let link;
-                    // 如果沒有案件可以下載就不要做連結
-                    if (fileNum == "0") {
-                        link = document.createElement("p");
-                    } else {
-                        link = document.createElement("a");
-                        link.setAttribute("href", "");
+        //篩選
+        console.log("findId[0]" + findId[0] + "group.id" + group.id)
+        if (group.id.startsWith(findId[0]) || findId == "") {
+            var rowspan = group.items.filter(item =>
+                item.id.startsWith(findId[0] + (findId[1] || "")) || findId.length < 2
+            ).length;
+            //類
+            for (var j = 0; j < group.items.length; j++) {
+                //篩選
+                if (group.items[j].id.startsWith(findId[0] + findId[1]) || findId.length < 2) {
+                    var row = document.createElement("tr");
+                    //門標題
+                    if (!groupRendered) {
+                        var th = document.createElement("th");
+                        var value = group.name
+                        th.setAttribute("rowspan", rowspan);
+                        buildCase(th, value);
+                        row.appendChild(th);
+                        groupRendered = true;
                     }
+                    // sub title
+                    var subTh = document.createElement("th");
+                    var value = group.items[j].name;
+                    buildCase(subTh, value);
+                    row.appendChild(subTh);
 
-                    buildCase(link, value);
-                    link.setAttribute("class", "contentLink");
-                    link.setAttribute("id", idNumber);
+                    // objects
+                    // var objNum = 9
+                    var objNum = findId.length > 1 ? group.items[j].objs.length : 9
+                    console.log("objNum" + objNum)
+                    var objs = group.items[j].objs || [];
+                    //款
+                    for (let i = 0; i < objNum; i++) {
+                        var value = objs[i]?.name ?? "";
+                        var objId = objs[i]?.id ?? ""
+                        //篩選
+                        if (objId.startsWith(findId) || findId.length < 3) {
+                            var fileNum = value ? value.slice(value.indexOf("(") + 1, value.indexOf(")")) : "";
+                            var td = document.createElement("td");
 
-                    td.appendChild(link);
+                            if (value) {
+                                let link;
+                                // 如果沒有案件可以下載就不要做連結
+                                if (fileNum == "0") {
+                                    link = document.createElement("p");
+                                } else {
+                                    link = document.createElement("a");
+                                    link.setAttribute("href", "./index.html?id=" + objId);
+                                }
+
+                                buildCase(link, value);
+                                link.setAttribute("class", "contentLink");
+                                link.setAttribute("id", objId);
+
+                                td.appendChild(link);
+                            }
+                            row.appendChild(td);
+                        }
+                    };
+                    table.appendChild(row);
                 }
-                row.appendChild(td);
-            };
-            table.appendChild(row);
+            }
         }
     }
 }
-
 //建立簡明目錄
 function buildContents(findId) {
     var table = document.querySelector("#excelDataTable");
     table.innerHTML = "";
     var columns = addAllColumnHeaders(contents, "#excelDataTable");
     //根據選單顯示對應的案件
-    if (findId.indexOf("0") != -1) {
-        findId = findId.slice(0, findId.indexOf("0"));
-        console.log(findId)
-    }
     for (var i = 0; i < contents.length; i++) {
         if (contents[i].文件下載.indexOf(findId) == 0) {
             var row = document.createElement("tr");

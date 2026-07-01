@@ -1,15 +1,20 @@
 //製作門選單
 myList.forEach(door => {
+    console.log(door.name)
     const option = document.createElement("option");
     option.value = doorSelect.length + 1
-    option.textContent = option.value + " " + door.title.slice(0, door.title.indexOf("\n"));
+    option.textContent = option.value + " " + door.name.slice(0, door.name.indexOf("\n"));
     doorSelect.appendChild(option);
 });
 //加上全部選項
-const option = document.createElement("option");
-option.value = "0";
-option.textContent = "全部"
-doorSelect.appendChild(option);
+function buildAllOpt() {
+    const option = document.createElement("option");
+    option.value = "0";
+    option.textContent = "全部"
+    return option
+}
+
+doorSelect.appendChild(buildAllOpt());
 
 //門
 doorSelect.addEventListener("change", () => {
@@ -31,12 +36,9 @@ doorSelect.addEventListener("change", () => {
             cateSelect.appendChild(option);
         });
         //加上全部選項
-        const option = document.createElement("option");
-        option.value = "0";
-        option.textContent = "全部"
-        cateSelect.appendChild(option);
+        cateSelect.appendChild(buildAllOpt());
         //自動選第一個選項
-        cateSelect.value = "1";
+        cateSelect.value = "0";
     }
     cateSelect.dispatchEvent(new Event("change"));
 });
@@ -57,16 +59,13 @@ cateSelect.addEventListener("change", () => {
         secs.forEach(sec => {
             const option = document.createElement("option");
             option.value = secSelect.length + 1;
-            option.textContent = option.value + " " + sec.slice(0, sec.indexOf("\n"));
+            option.textContent = option.value + " " + sec.name.slice(0, sec.name.indexOf("\n"));
             secSelect.appendChild(option);
         });
         //加上全部選項
-        const option = document.createElement("option");
-        option.value = "0";
-        option.textContent = "全部"
-        secSelect.appendChild(option);
+        secSelect.appendChild(buildAllOpt());
         //自動選第一個選項
-        secSelect.value = "1";
+        secSelect.value = "0";
     }
     secSelect.dispatchEvent(new Event("change"));
 });
@@ -74,6 +73,12 @@ cateSelect.addEventListener("change", () => {
 //款
 secSelect.addEventListener("change", () => {
     var findId = doorSelect.value + cateSelect.value + secSelect.value
-    console.log(findId)
-    buildContents(findId);
+    //如果id有0(全部選項)的話，就把0的部分切掉，用頭去找
+    if (findId.indexOf("0") != -1) {
+        findId = findId.slice(0, findId.indexOf("0"));
+    }
+    searchType == "table" ? buildHtmlTable(findId) : buildContents(findId)
 })
+
+doorSelect.value = "0";
+doorSelect.dispatchEvent(new Event("change"));
