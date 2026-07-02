@@ -5,7 +5,9 @@ const content = document.getElementById("content");
 const downloadZone = document.getElementById("downloadZone");
 downloadZone.style.display = "none"
 var searchType = "table";
+
 buildTable("");
+
 //切換到總表或簡明目錄
 //strategy i suppose
 function buildSearchUI(search) {
@@ -46,6 +48,7 @@ function back() {
     downloadZone.style.display = "none"
     window.history.replaceState({}, '', './index.html');
 }
+
 //增加標題和資訊
 function buildCase(element, value) {
     var caseTitle = document.createElement("p");
@@ -128,6 +131,7 @@ function buildTable(findId) {
         }
     }
 }
+
 //建立簡明目錄
 function buildContents(findId) {
     var table = document.querySelector("#excelDataTable");

@@ -1,71 +1,59 @@
-//製作門選單
-thaTable.forEach(door => {
-    console.log(door.name)
+//建立選項
+function buildOption(element) {
     const option = document.createElement("option");
-    option.value = doorSelect.length + 1
-    option.textContent = option.value + " " + door.name.slice(0, door.name.indexOf("\n"));
-    doorSelect.appendChild(option);
-});
-//加上全部選項
-function buildAllOpt() {
-    const option = document.createElement("option");
-    option.value = "0";
-    option.textContent = "全部"
+    //真是駭人的寫法
+    if (element == "all") {
+        option.value = "0";
+        option.textContent = "全部"
+    } else {
+        option.value = element.id[element.id.length - 1]
+        option.textContent = option.value + " " + element.name.slice(0, element.name.indexOf("\n"));
+    }
     return option
 }
+//建立所有選項
+function buildOptions(elements, elementSelect) {
+    elementSelect.disabled = false;
+    elementSelect.innerHTML = "";
 
-doorSelect.appendChild(buildAllOpt());
+    elements.forEach(element => {
+        elementSelect.appendChild(buildOption(element));
+    });
+    elementSelect.appendChild(buildOption("all"));
+    //自動選第一個選項
+    elementSelect.value = "0";
+}
+
+//停用選單
+function disableOption(elementSelect) {
+    elementSelect.value = "0"
+    elementSelect.innerHTML = "<option value='0'>--</option>"
+    elementSelect.disabled = true;
+}
+
+//製作門選單
+buildOptions(thaTable, doorSelect)
 
 //門
 doorSelect.addEventListener("change", () => {
-    // console.log("門：" + doorSelect.value)
     if (doorSelect.value == "0") {
-        cateSelect.value = "0"
-        cateSelect.innerHTML = "<option value='0'>--</option>"
-        cateSelect.disabled = true;
+        disableOption(cateSelect)
     } else {
         //製作類選單
-        cateSelect.disabled = false;
-        cateSelect.innerHTML = "";
         const cates = thaTable[doorSelect.value - 1].items;
-
-        cates.forEach(cate => {
-            const option = document.createElement("option");
-            option.value = cateSelect.length + 1;
-            option.textContent = option.value + " " + cate.name.slice(0, cate.name.indexOf("\n"));
-            cateSelect.appendChild(option);
-        });
-        //加上全部選項
-        cateSelect.appendChild(buildAllOpt());
-        //自動選第一個選項
-        cateSelect.value = "0";
+        buildOptions(cates, cateSelect)
     }
     cateSelect.dispatchEvent(new Event("change"));
 });
 
 //類
 cateSelect.addEventListener("change", () => {
-    // console.log(cateSelect.value)
     if (cateSelect.value == "0") {
-        secSelect.value = "0"
-        secSelect.innerHTML = "<option value='0'>--</option>"
-        secSelect.disabled = true;
+        disableOption(secSelect)
     } else {
         //製作款選單
-        secSelect.disabled = false;
-        secSelect.innerHTML = "";
         const secs = thaTable[doorSelect.value - 1].items[cateSelect.value - 1].objs;
-
-        secs.forEach(sec => {
-            const option = document.createElement("option");
-            option.value = secSelect.length + 1;
-            option.textContent = option.value + " " + sec.name.slice(0, sec.name.indexOf("\n"));
-            secSelect.appendChild(option);
-        });
-        //加上全部選項
-        secSelect.appendChild(buildAllOpt());
-        //自動選第一個選項
-        secSelect.value = "0";
+        buildOptions(secs, secSelect)
     }
     secSelect.dispatchEvent(new Event("change"));
 });
@@ -74,7 +62,7 @@ cateSelect.addEventListener("change", () => {
 secSelect.addEventListener("change", () => {
     var findId = doorSelect.value + cateSelect.value + secSelect.value
     //如果id有0(全部選項)的話，就把0的部分切掉，用頭去找
-    if (findId.indexOf("0") != -1) {
+    if (findId.includes("0")) {
         findId = findId.slice(0, findId.indexOf("0"));
     }
     searchType == "table" ? buildTable(findId) : buildContents(findId)
