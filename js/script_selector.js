@@ -77,7 +77,7 @@ secSelect.addEventListener("change", () => {
     if (findId.indexOf("0") != -1) {
         findId = findId.slice(0, findId.indexOf("0"));
     }
-    searchType == "table" ? buildHtmlTable(findId) : buildContents(findId)
+    searchType == "table" ? buildTable(findId) : buildContents(findId)
 })
 
 doorSelect.value = "0";

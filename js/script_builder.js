@@ -4,29 +4,22 @@ const secSelect = document.getElementById("secSelect");
 const content = document.getElementById("content");
 const downloadZone = document.getElementById("downloadZone");
 downloadZone.style.display = "none"
-var searchType = "table"
-
-buildHtmlTable("");
-//切換到總表
-document.getElementById("tableBtn").addEventListener("click", function () {
-    searchType = "table"
+var searchType = "table";
+buildTable("");
+//切換到總表或簡明目錄
+//strategy i suppose
+function buildSearchUI(search) {
+    searchType = search
     doorSelect.value = "0";
     doorSelect.dispatchEvent(new Event("change"));
-    buildHtmlTable("");
-})
-//切換到簡明目錄
-document.getElementById("contentsBtn").addEventListener("click", function () {
-    searchType = "content"
-    //自動預設選到「全部」
-    doorSelect.value = "0";
-    doorSelect.dispatchEvent(new Event("change"));
-    buildContents("");
-})
+    searchType == "table" ? buildTable("") : buildContents("");
+}
+document.getElementById("tableBtn").addEventListener("click", () => { buildSearchUI("table") })
+document.getElementById("contentsBtn").addEventListener("click", () => { buildSearchUI("content") })
 
 //切換字型
 fontSelect = document.getElementById("fontSelect")
 fontSelect.addEventListener('change', () => {
-    console.log(fontSelect.value)
     document.body.style.fontFamily = fontSelect.value + ',\'tanHsinFont_FD\''
 });
 
@@ -44,9 +37,7 @@ if (id) {
     }
 
 } else {
-    doorSelect.value = "0";
-    doorSelect.dispatchEvent(new Event("change"));
-    buildHtmlTable("");
+    buildSearchUI("table")
 }
 
 //回首頁
@@ -69,7 +60,7 @@ function buildCase(element, value) {
 }
 
 //建立總目錄
-function buildHtmlTable(findId) {
+function buildTable(findId) {
     var table = document.querySelector("#excelDataTable");
     table.innerHTML = "";
     let groupRendered = false;
