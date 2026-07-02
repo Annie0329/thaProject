@@ -38,12 +38,6 @@ textarea {
         url('../fonts/TW-Kai-98_1.ttf') format("truetype")
 }
 
-@font-face {
-    font-family: 'font_851tegakizatsu';
-    src:
-        url('../fonts/font_851tegakizatsu.ttf') format("truetype")
-}
-
 table {
     width: 100%;
     white-space: pre-wrap;
