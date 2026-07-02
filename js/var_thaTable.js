@@ -1,4 +1,4 @@
-var myList = [
+var thaTable = [
     {
         name: "行政\n(181)\n1####.##",
         id: "1",

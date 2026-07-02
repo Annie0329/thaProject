@@ -1,5 +1,5 @@
 //製作門選單
-myList.forEach(door => {
+thaTable.forEach(door => {
     console.log(door.name)
     const option = document.createElement("option");
     option.value = doorSelect.length + 1
@@ -27,7 +27,7 @@ doorSelect.addEventListener("change", () => {
         //製作類選單
         cateSelect.disabled = false;
         cateSelect.innerHTML = "";
-        const cates = myList[doorSelect.value - 1].items;
+        const cates = thaTable[doorSelect.value - 1].items;
 
         cates.forEach(cate => {
             const option = document.createElement("option");
@@ -54,7 +54,7 @@ cateSelect.addEventListener("change", () => {
         //製作款選單
         secSelect.disabled = false;
         secSelect.innerHTML = "";
-        const secs = myList[doorSelect.value - 1].items[cateSelect.value - 1].objs;
+        const secs = thaTable[doorSelect.value - 1].items[cateSelect.value - 1].objs;
 
         secs.forEach(sec => {
             const option = document.createElement("option");

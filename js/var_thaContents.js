@@ -1,4 +1,4 @@
-var contents = [
+var thaContents = [
     {
         "門": "一",
         "類": "一",
