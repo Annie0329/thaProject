@@ -1,14 +1,17 @@
 //增加標題和資訊
-function buildCase(element, value) {
+function buildCase(element, item) {
     var caseTitle = document.createElement("p");
     caseTitle.setAttribute("class", "caseTitle");
-    caseTitle.textContent = value.slice(0, value.indexOf("\n"))
+    caseTitle.textContent = item.name
     element.appendChild(caseTitle)
 
     var caseInfo = document.createElement("p");
     caseInfo.setAttribute("class", "caseInfo");
-    caseInfo.textContent = value.slice(value.indexOf("\n") + 1)
+    sharps = "#".repeat(5 - item.id.length) + ".##"
+
+    caseInfo.textContent = "(" + item.fileNum + ")\n" + item.id + sharps
     element.appendChild(caseInfo)
+
     return element
 }
 
@@ -23,43 +26,41 @@ function buildTable(findId) {
     table.innerHTML = "";
     let groupRendered = false;
     //門
-    for (var i = 0; i < thaTable.length; i++) {
+    for (const group of thaTable) {
         let groupRendered = false;
-        var group = thaTable[i];
         if (idFit(group.id, findId)) {
             var rowspan = group.items.filter(item =>
                 idFit(item.id, findId)
             ).length;
             //類
-            for (var j = 0; j < group.items.length; j++) {
-                if (idFit(group.items[j].id, findId)) {
+            for (const item of group.items) {
+                if (idFit(item.id, findId)) {
                     var row = document.createElement("tr");
                     //門標題
                     if (!groupRendered) {
                         var th = document.createElement("th");
                         th.setAttribute("rowspan", rowspan);
-                        row.appendChild(buildCase(th, group.name));
+                        row.appendChild(buildCase(th, group));
                         groupRendered = true;
                     }
                     // 類標題
                     var subTh = document.createElement("th");
-                    row.appendChild(buildCase(subTh, group.items[j].name));
+                    row.appendChild(buildCase(subTh, item));
 
                     //款
-                    var objNum = findId.length > 1 ? group.items[j].objs.length : 9
-                    var objs = group.items[j].objs || [];
+                    var objNum = findId.length > 1 ? item.objs.length : 9
+                    var objs = item.objs || [];
                     for (let i = 0; i < objNum; i++) {
-                        var value = objs[i]?.name ?? "";
+                        var value = objs[i] || "";
                         var objId = objs[i]?.id ?? ""
                         //篩選
                         if (idFit(objId, findId)) {
-                            var fileNum = value ? value.slice(value.indexOf("(") + 1, value.indexOf(")")) : "";
                             var td = document.createElement("td");
                             //如果不是空的
                             if (value) {
                                 let link;
                                 // 如果沒有案件可以下載就不要做連結
-                                if (fileNum == "0") {
+                                if (objs[i].fileNum == "0") {
                                     link = document.createElement("p");
                                 } else {
                                     link = document.createElement("a");
@@ -87,14 +88,14 @@ function buildContents(findId) {
     table.innerHTML = "";
     var columns = addAllColumnHeaders(thaContents, "#excelDataTable");
     //根據選單顯示對應的案件
-    for (var i = 0; i < thaContents.length; i++) {
-        if (thaContents[i].文件下載.startsWith(findId)) {
+    for (const thaContent of thaContents) {
+        if (thaContent.文件下載.startsWith(findId)) {
             var row = document.createElement("tr");
-            for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+            for (const column of columns) {
                 var td = document.createElement("td");
-                var cellValue = thaContents[i][columns[colIndex]];
+                var cellValue = thaContent[column];
 
-                if (columns[colIndex] === "文件下載" && pdfFileList.includes(cellValue)) {
+                if (column === "文件下載" && pdfFileList.includes(cellValue)) {
                     var link = document.createElement("a");
                     link.href = "./pdf/" + cellValue + ".pdf"
                     link.textContent = cellValue;
@@ -116,9 +117,8 @@ function addAllColumnHeaders(contents, selector) {
     var columnSet = [];
     var headerTr = document.createElement("tr");;
 
-    for (var i = 0; i < contents.length; i++) {
-        var rowHash = contents[i];
-        for (var key in rowHash) {
+    for (const content of contents) {
+        for (var key in content) {
             if (!columnSet.includes(key)) {
                 var th = document.createElement("th");
                 columnSet.push(key);

@@ -7,7 +7,7 @@ function buildOption(element) {
         option.textContent = "全部"
     } else {
         option.value = element.id[element.id.length - 1]
-        option.textContent = option.value + " " + element.name.slice(0, element.name.indexOf("\n"));
+        option.textContent = option.value + " " + element.name;
     }
     return option
 }
