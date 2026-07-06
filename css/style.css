@@ -18,6 +18,15 @@ textarea {
     font-size: inherit;
 }
 
+/*超連結點擊後顏色不變*/
+a:link {
+    color: #0000FF;
+}
+
+a:visited {
+    color: #0000FF;
+}
+
 @font-face {
     font-family: 'writesTaiWeb_FD';
     src:
