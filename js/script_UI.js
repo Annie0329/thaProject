@@ -6,6 +6,18 @@ const downloadZone = document.getElementById("downloadZone");
 downloadZone.style.display = "none"
 var searchType = "table";
 
+//讀取儲存的字型選項
+const savedFont = localStorage.getItem("selectedFont");
+if (savedFont) {
+    document.body.style.fontFamily = savedFont
+
+    // 同步 select 顯示
+    const fontSelect = document.getElementById("fontSelect");
+    if (fontSelect) {
+        fontSelect.value = savedFont;
+    }
+}
+
 buildTable("");
 
 //切換到總表或簡明目錄
@@ -22,7 +34,12 @@ document.getElementById("contentsBtn").addEventListener("click", () => { buildSe
 //切換字型
 fontSelect = document.getElementById("fontSelect")
 fontSelect.addEventListener('change', () => {
-    document.body.style.fontFamily = fontSelect.value + ',\'tanHsinFont_FD\''
+    const selectedFont = fontSelect.value;
+    document.body.style.fontFamily = selectedFont
+
+    // 存到 localStorage
+    localStorage.setItem("selectedFont", selectedFont);
+    console.log(selectedFont)
 });
 
 //用id換不同的內容
