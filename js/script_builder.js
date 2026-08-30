@@ -86,6 +86,7 @@ function buildTable(findId) {
 function buildContents(findId) {
     var table = document.querySelector("#excelDataTable");
     table.innerHTML = "";
+    var thaContents = [...thaContents1, ...thaContents2, ...thaContents3]
     var columns = addAllColumnHeaders(thaContents, "#excelDataTable");
     //根據選單顯示對應的案件
     for (const thaContent of thaContents) {
